@@ -44,6 +44,7 @@
                                     <listOptionValue value="${PROJECT_ROOT}/BSP/OLED"/>
                                     <listOptionValue value="${PROJECT_ROOT}/BSP/UART"/>
                                     <listOptionValue value="${PROJECT_ROOT}/BSP/key"/>
+                                    <listOptionValue value="${PROJECT_ROOT}/BSP/MPU6050"/>
                                     <listOptionValue value="${PROJECT_ROOT}/BSP/delay"/>
                                 </option>
                                 <option id="com.ti.ccstudio.buildDefinitions.TMS470_TICLANG_5.1.compilerID.DEFINE.1199365828" superClass="com.ti.ccstudio.buildDefinitions.TMS470_TICLANG_5.1.compilerID.DEFINE" valueType="definedSymbols">

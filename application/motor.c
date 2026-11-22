@@ -1,4 +1,5 @@
 #include "motor.h"
+#include "huidu.h"
 /**
  * 双轮驱动：A 轮 / B 轮各自独立计数、测速、PID。
  * 编码器中断累加脉冲，TIMA0 定时器 100Hz 里统一算速度、算 PWM。
@@ -271,6 +272,7 @@ void TIM_MOTOR_INST_IRQHandler(void)
     switch (DL_TimerA_getPendingInterrupt(TIM_MOTOR_INST))
     {
     case DL_TIMER_IIDX_LOAD:
+        adjust_motor();
         motor_calc_speed(MOTOR_A);
         motor_calc_speed(MOTOR_B);
         motor_control(MOTOR_A);

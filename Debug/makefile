@@ -10,10 +10,14 @@ GEN_OPTS__FLAG := @"./device.opt"
 GEN_CMDS__FLAG := -Wl,-l"./device_linker.cmd" 
 
 ORDERED_OBJS += \
-"./empty.o" \
 "./ti_msp_dl_config.o" \
 "./startup_mspm0g350x_ticlang.o" \
+"./main.o" \
+"./BSP/MPU6050/inv_mpu.o" \
+"./BSP/MPU6050/inv_mpu_dmp_motion_driver.o" \
+"./BSP/MPU6050/mpu_port.o" \
 "./BSP/OLED/oled.o" \
+"./BSP/UART/huidu.o" \
 "./BSP/UART/uart.o" \
 "./BSP/delay/delay.o" \
 "./BSP/key/key.o" \
@@ -30,12 +34,14 @@ RMDIR := RMDIR /S/Q
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include subdir_vars.mk
+-include BSP/MPU6050/subdir_vars.mk
 -include BSP/OLED/subdir_vars.mk
 -include BSP/UART/subdir_vars.mk
 -include BSP/delay/subdir_vars.mk
 -include BSP/key/subdir_vars.mk
 -include application/subdir_vars.mk
 -include subdir_rules.mk
+-include BSP/MPU6050/subdir_rules.mk
 -include BSP/OLED/subdir_rules.mk
 -include BSP/UART/subdir_rules.mk
 -include BSP/delay/subdir_rules.mk
@@ -150,7 +156,7 @@ all: $(OBJS) $(GEN_CMDS)
 # Tool invocations
 car_tb6612.out: $(OBJS) $(GEN_CMDS)
 	@echo 'Arm Linker - building target: "$@"'
-	"D:/ti/ccs2101/ccs/tools/compiler/ti-cgt-armllvm_5.1.1.LTS/bin/tiarmclang.exe" @"device.opt"  -march=thumbv6m -mcpu=cortex-m0plus -mfloat-abi=soft -mlittle-endian -mthumb -O2 -g -Wall -Wl,-m"car_tb6612.map" -Wl,-i"D:/ti/ccs2101/mspm0_sdk_2_11_00_07/source" -Wl,-i"D:/ti/code/car_tb6612" -Wl,-i"D:/ti/code/car_tb6612/Debug/syscfg" -Wl,-i"D:/ti/ccs2101/ccs/tools/compiler/ti-cgt-armllvm_5.1.1.LTS/lib" -Wl,--diag_wrap=off -Wl,--display_error_number -Wl,--warn_sections -Wl,--xml_link_info="car_tb6612_linkInfo.xml" -Wl,--rom_model -o "car_tb6612.out" $(ORDERED_OBJS)
+	"D:/ti/ccs2101/ccs/tools/compiler/ti-cgt-armllvm_5.1.1.LTS/bin/tiarmclang.exe" @"device.opt"  -march=thumbv6m -mcpu=cortex-m0plus -mfloat-abi=soft -mlittle-endian -mthumb -O2 -g -Wall -Wl,-m"car_tb6612.map" -Wl,-i"C:/TI/mspm0_sdk_2_11_00_07/source" -Wl,-i"D:/CCS/car_tb6612/car_tb6612" -Wl,-i"D:/CCS/car_tb6612/car_tb6612/Debug/syscfg" -Wl,-i"D:/ti/ccs2101/ccs/tools/compiler/ti-cgt-armllvm_5.1.1.LTS/lib" -Wl,--diag_wrap=off -Wl,--display_error_number -Wl,--warn_sections -Wl,--xml_link_info="car_tb6612_linkInfo.xml" -Wl,--rom_model -o "car_tb6612.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: "$@"'
 	@echo ' '
 
@@ -163,8 +169,8 @@ car_tb6612.hex: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(GEN_MISC_FILES__QUOTED)$(BIN_OUTPUTS__QUOTED)$(GEN_FILES__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "empty.o" "ti_msp_dl_config.o" "startup_mspm0g350x_ticlang.o" "BSP\OLED\oled.o" "BSP\UART\uart.o" "BSP\delay\delay.o" "BSP\key\key.o" "application\motor.o" 
-	-$(RM) "empty.d" "ti_msp_dl_config.d" "startup_mspm0g350x_ticlang.d" "BSP\OLED\oled.d" "BSP\UART\uart.d" "BSP\delay\delay.d" "BSP\key\key.d" "application\motor.d" 
+	-$(RM) "ti_msp_dl_config.o" "startup_mspm0g350x_ticlang.o" "main.o" "BSP\MPU6050\inv_mpu.o" "BSP\MPU6050\inv_mpu_dmp_motion_driver.o" "BSP\MPU6050\mpu_port.o" "BSP\OLED\oled.o" "BSP\UART\huidu.o" "BSP\UART\uart.o" "BSP\delay\delay.o" "BSP\key\key.o" "application\motor.o" 
+	-$(RM) "ti_msp_dl_config.d" "startup_mspm0g350x_ticlang.d" "main.d" "BSP\MPU6050\inv_mpu.d" "BSP\MPU6050\inv_mpu_dmp_motion_driver.d" "BSP\MPU6050\mpu_port.d" "BSP\OLED\oled.d" "BSP\UART\huidu.d" "BSP\UART\uart.d" "BSP\delay\delay.d" "BSP\key\key.d" "application\motor.d" 
 	-@echo ' '
 
 secondary-outputs: $(BIN_OUTPUTS)

@@ -124,13 +124,27 @@ bool SYSCFG_DL_SYSCTL_SYSPLL_init(void);
 #define OLED_INST_INT_IRQN                                         I2C1_INT_IRQn
 #define OLED_BUS_SPEED_HZ                                                 400000
 #define GPIO_OLED_SDA_PORT                                                 GPIOA
-#define GPIO_OLED_SDA_PIN                                         DL_GPIO_PIN_10
-#define GPIO_OLED_IOMUX_SDA                                      (IOMUX_PINCM21)
-#define GPIO_OLED_IOMUX_SDA_FUNC                       IOMUX_PINCM21_PF_I2C1_SDA
+#define GPIO_OLED_SDA_PIN                                         DL_GPIO_PIN_18
+#define GPIO_OLED_IOMUX_SDA                                      (IOMUX_PINCM40)
+#define GPIO_OLED_IOMUX_SDA_FUNC                       IOMUX_PINCM40_PF_I2C1_SDA
 #define GPIO_OLED_SCL_PORT                                                 GPIOA
-#define GPIO_OLED_SCL_PIN                                         DL_GPIO_PIN_11
-#define GPIO_OLED_IOMUX_SCL                                      (IOMUX_PINCM22)
-#define GPIO_OLED_IOMUX_SCL_FUNC                       IOMUX_PINCM22_PF_I2C1_SCL
+#define GPIO_OLED_SCL_PIN                                         DL_GPIO_PIN_29
+#define GPIO_OLED_IOMUX_SCL                                       (IOMUX_PINCM4)
+#define GPIO_OLED_IOMUX_SCL_FUNC                        IOMUX_PINCM4_PF_I2C1_SCL
+
+/* Defines for MPU6050 */
+#define MPU6050_INST                                                        I2C0
+#define MPU6050_INST_IRQHandler                                  I2C0_IRQHandler
+#define MPU6050_INST_INT_IRQN                                      I2C0_INT_IRQn
+#define MPU6050_BUS_SPEED_HZ                                              100000
+#define GPIO_MPU6050_SDA_PORT                                              GPIOA
+#define GPIO_MPU6050_SDA_PIN                                       DL_GPIO_PIN_0
+#define GPIO_MPU6050_IOMUX_SDA                                    (IOMUX_PINCM1)
+#define GPIO_MPU6050_IOMUX_SDA_FUNC                     IOMUX_PINCM1_PF_I2C0_SDA
+#define GPIO_MPU6050_SCL_PORT                                              GPIOA
+#define GPIO_MPU6050_SCL_PIN                                       DL_GPIO_PIN_1
+#define GPIO_MPU6050_IOMUX_SCL                                    (IOMUX_PINCM2)
+#define GPIO_MPU6050_IOMUX_SCL_FUNC                     IOMUX_PINCM2_PF_I2C0_SCL
 
 
 /* Defines for PRINT */
@@ -140,12 +154,12 @@ bool SYSCFG_DL_SYSCTL_SYSPLL_init(void);
 #define PRINT_INST_INT_IRQN                                       UART0_INT_IRQn
 #define GPIO_PRINT_RX_PORT                                                 GPIOA
 #define GPIO_PRINT_TX_PORT                                                 GPIOA
-#define GPIO_PRINT_RX_PIN                                          DL_GPIO_PIN_1
-#define GPIO_PRINT_TX_PIN                                          DL_GPIO_PIN_0
-#define GPIO_PRINT_IOMUX_RX                                       (IOMUX_PINCM2)
-#define GPIO_PRINT_IOMUX_TX                                       (IOMUX_PINCM1)
-#define GPIO_PRINT_IOMUX_RX_FUNC                        IOMUX_PINCM2_PF_UART0_RX
-#define GPIO_PRINT_IOMUX_TX_FUNC                        IOMUX_PINCM1_PF_UART0_TX
+#define GPIO_PRINT_RX_PIN                                         DL_GPIO_PIN_11
+#define GPIO_PRINT_TX_PIN                                         DL_GPIO_PIN_10
+#define GPIO_PRINT_IOMUX_RX                                      (IOMUX_PINCM22)
+#define GPIO_PRINT_IOMUX_TX                                      (IOMUX_PINCM21)
+#define GPIO_PRINT_IOMUX_RX_FUNC                       IOMUX_PINCM22_PF_UART0_RX
+#define GPIO_PRINT_IOMUX_TX_FUNC                       IOMUX_PINCM21_PF_UART0_TX
 #define PRINT_BAUD_RATE                                                 (115200)
 #define PRINT_IBRD_40_MHZ_115200_BAUD                                       (21)
 #define PRINT_FBRD_40_MHZ_115200_BAUD                                       (45)
@@ -208,6 +222,28 @@ bool SYSCFG_DL_SYSCTL_SYSPLL_init(void);
 #define MOTOR_E2B_PORT                                                   (GPIOB)
 #define MOTOR_E2B_PIN                                           (DL_GPIO_PIN_15)
 #define MOTOR_E2B_IOMUX                                          (IOMUX_PINCM32)
+/* Defines for L2: GPIOA.23 with pinCMx 53 on package pin 24 */
+#define HUIDU_L2_PORT                                                    (GPIOA)
+#define HUIDU_L2_PIN                                            (DL_GPIO_PIN_23)
+#define HUIDU_L2_IOMUX                                           (IOMUX_PINCM53)
+/* Defines for L1: GPIOA.21 with pinCMx 46 on package pin 17 */
+#define HUIDU_L1_PORT                                                    (GPIOA)
+#define HUIDU_L1_PIN                                            (DL_GPIO_PIN_21)
+#define HUIDU_L1_IOMUX                                           (IOMUX_PINCM46)
+/* Defines for M: GPIOB.14 with pinCMx 31 on package pin 2 */
+#define HUIDU_M_PORT                                                     (GPIOB)
+#define HUIDU_M_PIN                                             (DL_GPIO_PIN_14)
+#define HUIDU_M_IOMUX                                            (IOMUX_PINCM31)
+/* Defines for R1: GPIOB.16 with pinCMx 33 on package pin 4 */
+#define HUIDU_R1_PORT                                                    (GPIOB)
+#define HUIDU_R1_PIN                                            (DL_GPIO_PIN_16)
+#define HUIDU_R1_IOMUX                                           (IOMUX_PINCM33)
+/* Defines for R2: GPIOB.17 with pinCMx 43 on package pin 14 */
+#define HUIDU_R2_PORT                                                    (GPIOB)
+#define HUIDU_R2_PIN                                            (DL_GPIO_PIN_17)
+#define HUIDU_R2_IOMUX                                           (IOMUX_PINCM43)
+
+
 
 
 /* clang-format on */
@@ -221,8 +257,10 @@ bool SYSCFG_DL_SYSCTL_SYSPLL_init(void);
 void SYSCFG_DL_PWMA_init(void);
 void SYSCFG_DL_TIM_MOTOR_init(void);
 void SYSCFG_DL_OLED_init(void);
+void SYSCFG_DL_MPU6050_init(void);
 void SYSCFG_DL_PRINT_init(void);
 
+void SYSCFG_DL_SYSTICK_init(void);
 
 bool SYSCFG_DL_saveConfiguration(void);
 bool SYSCFG_DL_restoreConfiguration(void);
